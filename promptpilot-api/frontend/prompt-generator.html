@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Prompt Generator | Prompt Pilot</title>
+    <meta name="description" content="Generate professional AI prompts for ChatGPT, Midjourney, DALL-E and more with our intelligent prompt generator">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --gray: #2a2a2a;
+            --light-gray: #3a3a3a;
+            --gold: #ffd700;
+            --gold-hover: #ffed4e;
+            --white: #ffffff;
+            --off-white: #f0f0f0;
+            --muted: #888888;
+            --accent: #00d4ff;
+            --success: #00ff88;
+            --error: #ff4444;
+            --shadow: rgba(0, 0, 0, 0.3);
+            --glow: rgba(255, 215, 0, 0.3);
+            
+            --font-primary: 'Inter', sans-serif;
+            --font-heading: 'Space Grotesk', sans-serif;
+            
+            --border-radius: 12px;
+            --border-radius-large: 20px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: linear-gradient(135deg, var(--black) 0%, var(--dark-gray) 100%);
+            color: var(--white);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            background: rgba(10, 10, 10, 0.8);
+            border-radius: var(--border-radius-large);
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .gold-text {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-hover) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .back-link {
+            color: var(--gold);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--gold-hover);
+            transform: translateX(-5px);
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 968px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Generator Panel */
+        .generator-panel {
+            background: var(--gray);
+            border-radius: var(--border-radius-large);
+            padding: 30px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .panel-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .panel-title i {
+            font-size: 1.3rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--off-white);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: var(--border-radius);
+            border: 2px solid var(--light-gray);
+            background: var(--dark-gray);
+            color: var(--white);
+            font-family: var(--font-primary);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 20px var(--glow);
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkbox-item input {
+            width: auto;
+        }
+
+        .slider-container {
+            margin-top: 10px;
+        }
+
+        .slider-value {
+            text-align: center;
+            margin-top: 5px;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        /* Output Panel */
+        .output-panel {
+            background: var(--gray);
+            border-radius: var(--border-radius-large);
+            padding: 30px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            box-shadow: 0 10px 30px var(--shadow);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .output-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .output-actions {
+            display: flex;
+            gap: 10px;
+            margin-left: auto;
+        }
+
+        .action-btn {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 8px 15px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+
+        .action-btn:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .action-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .action-btn:disabled:hover {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--gold);
+        }
+
+        .prompt-output {
+            background: var(--dark-gray);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            min-height: 200px;
+            flex-grow: 1;
+            border: 1px solid var(--light-gray);
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-y: auto;
+            line-height: 1.5;
+        }
+
+        .prompt-output.empty {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        .loading-dots {
+            display: inline-block;
+            position: relative;
+            width: 80px;
+            height: 20px;
+        }
+
+        .loading-dots div {
+            position: absolute;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gold);
+            animation-timing-function: cubic-bezier(0, 1, 1, 0);
+        }
+
+        .loading-dots div:nth-child(1) {
+            left: 8px;
+            animation: loading-dots1 0.6s infinite;
+        }
+
+        .loading-dots div:nth-child(2) {
+            left: 8px;
+            animation: loading-dots2 0.6s infinite;
+        }
+
+        .loading-dots div:nth-child(3) {
+            left: 32px;
+            animation: loading-dots2 0.6s infinite;
+        }
+
+        .loading-dots div:nth-child(4) {
+            left: 56px;
+            animation: loading-dots3 0.6s infinite;
+        }
+
+        @keyframes loading-dots1 {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes loading-dots3 {
+            0% { transform: scale(1); }
+            100% { transform: scale(0); }
+        }
+
+        @keyframes loading-dots2 {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(24px, 0); }
+        }
+
+        /* Prompt Examples */
+        .examples-section {
+            background: var(--gray);
+            border-radius: var(--border-radius-large);
+            padding: 30px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            box-shadow: 0 10px 30px var(--shadow);
+            margin-bottom: 40px;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .example-card {
+            background: var(--dark-gray);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            border: 1px solid var(--light-gray);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .example-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .example-card h4 {
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-family: var(--font-heading);
+        }
+
+        .example-card p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .example-prompt {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            border-left: 3px solid var(--gold);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--gray), var(--dark-gray));
+            border-radius: var(--border-radius-large);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .cta-section h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold), var(--gold-hover));
+            color: var(--black);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px var(--glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--gold);
+            border: 2px solid var(--gold);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--muted);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        /* Utility Classes */
+        .hidden {
+            display: none !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+
+        /* Range Slider */
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            background: var(--light-gray);
+            border-radius: 4px;
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--gold);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            background: var(--gold-hover);
+            transform: scale(1.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .generator-panel,
+            .output-panel,
+            .examples-section {
+                padding: 20px;
+            }
+            
+            .output-actions {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            .action-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">Prompt <span class="gold-text">Generator</span></div>
+            <p class="tagline">Create professional AI prompts for ChatGPT, Midjourney, DALL-E and more</p>
+            <a href="https://promptpilot.opensystems.co.ke/" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Prompt Pilot
+            </a>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Generator Panel -->
+            <div class="generator-panel">
+                <h2 class="panel-title"><i class="fas fa-magic"></i> Prompt Settings</h2>
+                
+                <div class="form-group">
+                    <label for="ai-model">AI Model</label>
+                    <select id="ai-model">
+                        <option value="chatgpt">ChatGPT / GPT-4</option>
+                        <option value="midjourney">Midjourney</option>
+                        <option value="dalle">DALL-E</option>
+                        <option value="stable-diffusion">Stable Diffusion</option>
+                        <option value="claude">Claude</option>
+                        <option value="custom">Custom Template</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="prompt-type">Prompt Type</label>
+                    <select id="prompt-type">
+                        <option value="creative">Creative Writing</option>
+                        <option value="technical">Technical Explanation</option>
+                        <option value="business">Business & Marketing</option>
+                        <option value="educational">Educational Content</option>
+                        <option value="conversational">Conversational</option>
+                        <option value="analytical">Data Analysis</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="topic">Topic/Subject</label>
+                    <input type="text" id="topic" placeholder="e.g., Artificial Intelligence, Climate Change, Product Marketing">
+                </div>
+
+                <div class="form-group">
+                    <label for="tone">Tone & Style</label>
+                    <select id="tone">
+                        <option value="professional">Professional</option>
+                        <option value="casual">Casual/Friendly</option>
+                        <option value="academic">Academic</option>
+                        <option value="persuasive">Persuasive</option>
+                        <option value="humorous">Humorous</option>
+                        <option value="inspiring">Inspiring</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="complexity">Complexity Level</label>
+                    <div class="slider-container">
+                        <input type="range" id="complexity" min="1" max="5" value="3">
+                        <div class="slider-value">
+                            <span id="complexity-value">Medium</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Additional Options</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="include-examples" checked>
+                            <label for="include-examples">Include Examples</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="step-by-step">
+                            <label for="step-by-step">Step-by-step Format</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="include-questions">
+                            <label for="include-questions">Include Follow-up Questions</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="custom-instructions">Custom Instructions (Optional)</label>
+                    <textarea id="custom-instructions" placeholder="Any specific requirements or constraints..."></textarea>
+                </div>
+
+                <button id="generate-btn" class="action-btn" style="width: 100%; padding: 15px; font-size: 1.1rem;">
+                    <i class="fas fa-bolt"></i> Generate Prompt
+                </button>
+            </div>
+
+            <!-- Output Panel -->
+            <div class="output-panel">
+                <div class="output-header">
+                    <h2 class="panel-title"><i class="fas fa-scroll"></i> Generated Prompt</h2>
+                    <div class="output-actions">
+                        <button id="copy-btn" class="action-btn" disabled>
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                        <button id="save-btn" class="action-btn" disabled>
+                            <i class="fas fa-save"></i> Save
+                        </button>
+                        <button id="new-btn" class="action-btn">
+                            <i class="fas fa-plus"></i> New
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="prompt-output" class="prompt-output empty">
+                    Your generated prompt will appear here...
+                </div>
+                
+                <div id="loading-indicator" class="hidden">
+                    <div class="loading-dots">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <p class="text-center">Generating your perfect prompt...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prompt Examples -->
+        <section class="examples-section">
+            <h2 class="panel-title"><i class="fas fa-lightbulb"></i> Prompt Examples</h2>
+            <p>Need inspiration? Try these example templates:</p>
+            
+            <div class="examples-grid">
+                <div class="example-card" data-example="blog-outline">
+                    <h4>Blog Post Outline</h4>
+                    <p>Generate a structured outline for a blog post</p>
+                    <div class="example-prompt">Create a detailed outline for a blog post about [topic] targeting [audience]...</div>
+                </div>
+                
+                <div class="example-card" data-example="product-description">
+                    <h4>Product Description</h4>
+                    <p>Create compelling product descriptions</p>
+                    <div class="example-prompt">Write a persuasive product description for [product] highlighting key features...</div>
+                </div>
+                
+                <div class="example-card" data-example="email-sequence">
+                    <h4>Email Sequence</h4>
+                    <p>Design an effective email marketing sequence</p>
+                    <div class="example-prompt">Create a 5-email sequence for [purpose] with engaging subject lines...</div>
+                </div>
+                
+                <div class="example-card" data-example="social-media">
+                    <h4>Social Media Posts</h4>
+                    <p>Generate engaging social media content</p>
+                    <div class="example-prompt">Create 3 social media posts about [topic] for [platform] with relevant hashtags...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Ready to Master AI Prompting?</h2>
+            <p>Take your AI skills to the next level with our comprehensive guides and premium prompt packs.</p>
+            
+            <div class="cta-buttons">
+                <a href="https://promptpilot.opensystems.co.ke#products" class="btn btn-primary">
+                    <i class="fas fa-shopping-cart"></i> View Premium Products
+                </a>
+                <a href="https://promptpilot.opensystems.co.ke#resources" class="btn btn-secondary">
+                    <i class="fas fa-download"></i> Free Resources
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2025 Prompt Pilot. All rights reserved. | AI Prompt Generator v1.0</p>
+        </footer>
+    </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // DOM Elements
+        const generateBtn = document.getElementById('generate-btn');
+        const copyBtn = document.getElementById('copy-btn');
+        const saveBtn = document.getElementById('save-btn');
+        const newBtn = document.getElementById('new-btn');
+        const promptOutput = document.getElementById('prompt-output');
+        const loadingIndicator = document.getElementById('loading-indicator');
+        const complexitySlider = document.getElementById('complexity');
+        const complexityValue = document.getElementById('complexity-value');
+        
+        // API configuration - UPDATE THIS FOR PRODUCTION
+        const API_BASE_URL = window.location.hostname === 'localhost' || 
+                            window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:5000/api'  // Development
+            : 'https://your-actual-domain.com/api'; // Production - CHANGE THIS
+        
+        // Example complexity labels
+        const complexityLabels = {
+            1: 'Very Simple',
+            2: 'Simple', 
+            3: 'Medium',
+            4: 'Complex',
+            5: 'Very Complex'
+        };
+        
+        // Update complexity value display
+        complexitySlider.addEventListener('input', function() {
+            complexityValue.textContent = complexityLabels[this.value];
+        });
+        
+        // Example templates data
+        const exampleTemplates = {
+            'blog-outline': {
+                model: 'chatgpt',
+                type: 'creative',
+                topic: 'The Future of Renewable Energy',
+                tone: 'professional',
+                complexity: 3,
+                instructions: 'Focus on practical applications and include statistics'
+            },
+            'product-description': {
+                model: 'chatgpt', 
+                type: 'business',
+                topic: 'Smart Home Device',
+                tone: 'persuasive',
+                complexity: 2,
+                instructions: 'Highlight unique features and benefits for homeowners'
+            },
+            'email-sequence': {
+                model: 'chatgpt',
+                type: 'business', 
+                topic: 'Product Launch',
+                tone: 'professional',
+                complexity: 4,
+                instructions: 'Create a 5-email sequence with clear CTAs'
+            },
+            'social-media': {
+                model: 'chatgpt',
+                type: 'creative',
+                topic: 'AI Technology',
+                tone: 'casual', 
+                complexity: 2,
+                instructions: 'Make it engaging and shareable for tech enthusiasts'
+            }
+        };
+        
+        // Set up example cards
+        document.querySelectorAll('.example-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const exampleType = this.getAttribute('data-example');
+                const template = exampleTemplates[exampleType];
+                
+                if (template) {
+                    // Fill the form with example data
+                    document.getElementById('ai-model').value = template.model;
+                    document.getElementById('prompt-type').value = template.type;
+                    document.getElementById('topic').value = template.topic;
+                    document.getElementById('tone').value = template.tone;
+                    document.getElementById('complexity').value = template.complexity;
+                    document.getElementById('custom-instructions').value = template.instructions;
+                    
+                    // Update complexity display
+                    complexityValue.textContent = complexityLabels[template.complexity];
+                    
+                    // Generate the prompt
+                    generatePrompt();
+                }
+            });
+        });
+        
+        // Generate prompt function
+        async function generatePrompt() {
+            // Get form values
+            const formData = {
+                model: document.getElementById('ai-model').value,
+                type: document.getElementById('prompt-type').value,
+                topic: document.getElementById('topic').value,
+                tone: document.getElementById('tone').value,
+                complexity: parseInt(document.getElementById('complexity').value),
+                include_examples: document.getElementById('include-examples').checked,
+                step_by_step: document.getElementById('step-by-step').checked,
+                include_questions: document.getElementById('include-questions').checked,
+                custom_instructions: document.getElementById('custom-instructions').value
+            };
+            
+            // Validate required fields
+            if (!formData.topic.trim()) {
+                alert('Please enter a topic/subject for your prompt.');
+                return;
+            }
+            
+            // Show loading state
+            promptOutput.classList.add('hidden');
+            loadingIndicator.classList.remove('hidden');
+            generateBtn.disabled = true;
+            generateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/generate-prompt`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const result = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(result.error || 'Failed to generate prompt');
+                }
+                
+                // Display the generated prompt
+                promptOutput.textContent = result.prompt;
+                promptOutput.classList.remove('empty');
+                
+                // Show warning if using fallback
+                if (result.warning) {
+                    console.warn(result.warning);
+                }
+                
+            } catch (error) {
+                console.error('Generation error:', error);
+                // Fallback to local generation
+                const localPrompt = buildPrompt(
+                    formData.model, 
+                    formData.type, 
+                    formData.topic, 
+                    formData.tone, 
+                    formData.complexity,
+                    formData.include_examples,
+                    formData.step_by_step,
+                    formData.include_questions,
+                    formData.custom_instructions
+                );
+                promptOutput.textContent = localPrompt;
+                promptOutput.classList.remove('empty');
+                
+                alert('AI service temporarily unavailable. Using template-based generation.');
+            } finally {
+                // Hide loading indicator and enable buttons
+                promptOutput.classList.remove('hidden');
+                loadingIndicator.classList.add('hidden');
+                generateBtn.disabled = false;
+                generateBtn.innerHTML = '<i class="fas fa-bolt"></i> Generate Prompt';
+                
+                // Enable action buttons
+                copyBtn.disabled = false;
+                saveBtn.disabled = false;
+            }
+        }
+        
+        // Build prompt fallback function
+        function buildPrompt(model, type, topic, tone, complexity, includeExamples, stepByStep, includeQuestions, customInstructions) {
+            let prompt = '';
+            
+            // Model-specific instructions
+            switch(model) {
+                case 'midjourney':
+                    prompt += `Create a Midjourney prompt for: "${topic}"\n\n`;
+                    prompt += `Style: ${tone}\n`;
+                    prompt += `Detail Level: ${complexityLabels[complexity]}\n\n`;
+                    break;
+                case 'dalle':
+                    prompt += `Create a DALL-E prompt for: "${topic}"\n\n`;
+                    prompt += `Style: ${tone}\n`;
+                    prompt += `Detail: ${complexityLabels[complexity]}\n\n`;
+                    break;
+                default:
+                    prompt += `Create a ${type} prompt about: "${topic}"\n\n`;
+                    prompt += `Tone: ${tone}\n`;
+                    prompt += `Complexity: ${complexityLabels[complexity]}\n\n`;
+            }
+            
+            // Add specific instructions based on type
+            switch(type) {
+                case 'creative':
+                    prompt += `Please create engaging and imaginative content.\n`;
+                    break;
+                case 'technical':
+                    prompt += `Focus on accuracy, clarity, and depth of explanation.\n`;
+                    break;
+                case 'business':
+                    prompt += `Emphasize practical applications and ROI considerations.\n`;
+                    break;
+                case 'educational':
+                    prompt += `Structure content for optimal learning and retention.\n`;
+                    break;
+                case 'conversational':
+                    prompt += `Make it feel like a natural, engaging conversation.\n`;
+                    break;
+                case 'analytical':
+                    prompt += `Focus on data interpretation and actionable insights.\n`;
+                    break;
+            }
+            
+            // Add optional components
+            if (includeExamples) {
+                prompt += `Include relevant examples to illustrate key points.\n`;
+            }
+            
+            if (stepByStep) {
+                prompt += `Present information in a clear, step-by-step format.\n`;
+            }
+            
+            if (includeQuestions) {
+                prompt += `Incorporate thought-provoking questions for engagement.\n`;
+            }
+            
+            // Add custom instructions if provided
+            if (customInstructions.trim()) {
+                prompt += `\nAdditional Requirements: ${customInstructions}\n`;
+            }
+            
+            // Model-specific formatting
+            if (model === 'midjourney') {
+                prompt += `\nFormat the response as a ready-to-use Midjourney prompt with appropriate parameters.`;
+            } else if (model === 'dalle') {
+                prompt += `\nFormat as a detailed DALL-E prompt with specific visual descriptions.`;
+            } else {
+                prompt += `\nProvide a comprehensive, well-structured prompt that will yield high-quality results.`;
+            }
+            
+            return prompt;
+        }
+        
+        // Copy to clipboard function
+        function copyToClipboard() {
+            const text = promptOutput.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                // Show success feedback
+                const originalText = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                copyBtn.style.background = 'var(--success)';
+                copyBtn.style.color = 'var(--black)';
+                copyBtn.style.borderColor = 'var(--success)';
+                
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalText;
+                    copyBtn.style.background = '';
+                    copyBtn.style.color = '';
+                    copyBtn.style.borderColor = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert('Failed to copy prompt to clipboard. Please try again.');
+            });
+        }
+        
+        // Save prompt function
+        function savePrompt() {
+            const text = promptOutput.textContent;
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            
+            a.href = url;
+            a.download = `ai-prompt-${Date.now()}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            // Show success feedback
+            const originalText = saveBtn.innerHTML;
+            saveBtn.innerHTML = '<i class="fas fa-check"></i> Saved!';
+            saveBtn.style.background = 'var(--success)';
+            saveBtn.style.color = 'var(--black)';
+            saveBtn.style.borderColor = 'var(--success)';
+            
+            setTimeout(() => {
+                saveBtn.innerHTML = originalText;
+                saveBtn.style.background = '';
+                saveBtn.style.color = '';
+                saveBtn.style.borderColor = '';
+            }, 2000);
+        }
+        
+        // New prompt function
+        function newPrompt() {
+            // Clear the output
+            promptOutput.textContent = 'Your generated prompt will appear here...';
+            promptOutput.classList.add('empty');
+            
+            // Disable action buttons
+            copyBtn.disabled = true;
+            saveBtn.disabled = true;
+        }
+        
+        // Event listeners
+        generateBtn.addEventListener('click', generatePrompt);
+        copyBtn.addEventListener('click', copyToClipboard);
+        saveBtn.addEventListener('click', savePrompt);
+        newBtn.addEventListener('click', newPrompt);
+        
+        // Allow Enter key to generate prompt in topic field
+        document.getElementById('topic').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                generatePrompt();
+            }
+        });
+    });
+</script>
+</body>
+</html>
